@@ -36,20 +36,20 @@ describe('assignment_4', () => {
 
         const userAddedResponse = await request(baseUrl)
             .get('/');
-
         expect(userAddedResponse.text.includes(`${email}`)).toBe(true);
 
         document.body.innerHTML = userAddedResponse.text;
         
         const userEditBtn = document.querySelector(`#edit-${name}`);
-
+        
         const id = userEditBtn.parentElement.getAttribute('action').split('users/')[1];
-
+        
         await request(baseUrl).delete('/users/' + id);
 
         const userDeleteResponse = await request(baseUrl)
-            .get('/');
-
+            
+        .get('/');
+        
         expect(userDeleteResponse.text.includes(`${email}`)).toBe(false)
     });
 });
